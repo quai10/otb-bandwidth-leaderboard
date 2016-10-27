@@ -11,8 +11,8 @@
                     <th>{$i + 1}</th>
                     <td>{$host->ip}</td>
                     <td>{$host->hostname}</td>
-                    <td>↘ {$host->getReadableDownload()}/s</td>
-                    <td>↗ {$host->getReadableUpload()}/s</td>
+                    <td><span title="Download">⬇</span> {$host->getReadableDownload()}/s</td>
+                    <td><span title="Upload">⬆</span> {$host->getReadableUpload()}/s</td>
                 </tr>
             {/foreach}
         </table>
