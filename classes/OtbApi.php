@@ -2,7 +2,6 @@
 
 namespace OtbBandwidthLeaderboard;
 
-use GuzzleHttp\Cookie\FileCookieJar;
 use GuzzleHttp\Client as GuzzleClient;
 
 class OtbApi
@@ -17,7 +16,7 @@ class OtbApi
         $this->baseUrl = $baseUrl;
         $this->user = $user;
         $this->password = $password;
-        $this->client = new GuzzleClient(['cookies'=>true]);
+        $this->client = new GuzzleClient(['cookies' => true]);
     }
 
     private function sortHostsByUpload($a, $b)
@@ -25,6 +24,7 @@ class OtbApi
         if ($a->upload == $b->upload) {
             return 0;
         }
+
         return ($a->upload > $b->upload) ? -1 : 1;
     }
 
@@ -34,11 +34,11 @@ class OtbApi
             'POST',
             $this->baseUrl.'/cgi-bin/luci/admin/overthebox/lan_traffic_data',
             [
-                'verify'=>false,
-                'form_params'=>[
-                    'luci_username'=>$this->user,
-                    'luci_password'=>$this->password
-                ]
+                'verify'      => false,
+                'form_params' => [
+                    'luci_username' => $this->user,
+                    'luci_password' => $this->password,
+                ],
             ]
         );
         $data = json_decode($response->getBody()->getContents());
@@ -50,6 +50,7 @@ class OtbApi
             $hosts[] = new Host($host->ip, $host->hostname, $host->rx, $host->tx);
         }
         usort($hosts, [$this, 'sortHostsByUpload']);
+
         return $hosts;
     }
 }
