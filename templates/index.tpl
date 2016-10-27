@@ -6,6 +6,7 @@
     </head>
     <body>
         <table>
+            <caption>Bandwidth usage</caption>
             {foreach $hosts as $i=>$host}
                 <tr>
                     <th>{$i + 1}</th>
