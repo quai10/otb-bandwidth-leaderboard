@@ -8,7 +8,7 @@
         <table>
             {foreach $hosts as $i=>$host}
                 <tr>
-                    <th>{$i}</th>
+                    <th>{$i + 1}</th>
                     <td>{$host->ip}</td>
                     <td>{$host->hostname}</td>
                     <td>↘ {$host->getReadableDownload()}</td>
